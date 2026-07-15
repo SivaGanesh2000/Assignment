@@ -11,7 +11,7 @@ AWS CLI configured with valid credentials (aws configure).
 Proper IAM permissions to create
 
 ### Variables
-The configuration expects few variables which are listed in variables.tf file an example is provided with name dev.auto.tfvars
+The configuration expects few variables which are listed in 'variables.tf' file an example is provided with name 'dev.auto.tfvars'
 
 ### Usage
 Initialize Terraform:
