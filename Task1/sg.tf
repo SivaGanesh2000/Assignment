@@ -1,5 +1,6 @@
 ## ALB Security Group
 
+## SG for ALB
 resource "aws_security_group" "alb_sg" {
   name        = "alb_sg"
   description = "Allow http inbound traffic and all outbound traffic"
@@ -10,7 +11,7 @@ resource "aws_security_group" "alb_sg" {
   }
 }
 
-# Allow Http access
+# Allow Http access from ALB SG
 resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   security_group_id = aws_security_group.alb_sg.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -27,7 +28,6 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
 }
 
 ## EC2 Security Group
-
 resource "aws_security_group" "ec2_sg" {
   name        = "EC2_SG"
   description = "Allow http inbound traffic and all outbound traffic"
@@ -38,7 +38,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 }
 
-# Allow Http access from ALB SG
+# Allow Http access from ALB SG within EC2 SG
 resource "aws_vpc_security_group_ingress_rule" "ec2_in" {
   security_group_id            = aws_security_group.ec2_sg.id
   referenced_security_group_id = aws_security_group.alb_sg.id
@@ -54,7 +54,7 @@ resource "aws_vpc_security_group_egress_rule" "ec2_out" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
-## RDS Security Group
+## RDS Security Group 
 resource "aws_security_group" "rds_sg" {
   name        = "RDS_Sg"
   description = "Allow http inbound traffic and all outbound traffic"
@@ -65,7 +65,7 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
-# Allow PostgreSql access from 
+# Allow PostgreSql access from EC2 SG within PostgreSql SG
 resource "aws_vpc_security_group_ingress_rule" "rds_in" {
   security_group_id            = aws_security_group.rds_sg.id
   referenced_security_group_id = aws_security_group.ec2_sg.id
@@ -74,7 +74,7 @@ resource "aws_vpc_security_group_ingress_rule" "rds_in" {
   to_port                      = 5432
 }
 
-# Allow all outbound traffic from ALB Security Group
+# Allow all outbound traffic from PostgreSql Security Group
 resource "aws_vpc_security_group_egress_rule" "rds_out" {
   security_group_id = aws_security_group.rds_sg.id
   cidr_ipv4         = "0.0.0.0/0"

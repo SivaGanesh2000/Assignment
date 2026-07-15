@@ -1,3 +1,6 @@
+# Created NAT for instances in private subnet
+# Created Internet Gateway for instances in public subnet
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 

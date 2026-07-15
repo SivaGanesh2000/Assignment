@@ -1,3 +1,6 @@
+# Creates a list of both Public and Private Subnets, provided CIDR ranges
+
+# List of Public Subnet Resources
 resource "aws_subnet" "pblc" {
   vpc_id = aws_vpc.vpc.id
   count  = length(var.public_subnet_cidrs)
@@ -10,6 +13,7 @@ resource "aws_subnet" "pblc" {
   })
 }
 
+# List of Private Subnet Resources
 resource "aws_subnet" "prvt" {
   vpc_id = aws_vpc.vpc.id
   count  = length(var.private_subnet_cidrs)

@@ -1,3 +1,4 @@
+# Create ALB if Name is not NA or empty
 variable "alb_name" {
   type        = string
   description = "Name of the ALB"
@@ -8,6 +9,7 @@ variable "alb_name" {
   }
 }
 
+# Validate if AMI id start with 'ami-'
 variable "ami_id" {
   type        = string
   description = "AMI Id of the EC2 instance"
@@ -18,6 +20,7 @@ variable "ami_id" {
   }
 }
 
+# validate if instance type starts with t or m series
 variable "instance_type" {
   type        = string
   description = "Instance Type of EC2 Instance"

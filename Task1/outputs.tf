@@ -1,3 +1,7 @@
+# Created Outputs.tf file which returns details of all the
+# resources created.
+
+# All VPC Details
 output "VPC" {
   value = { "Id" = aws_vpc.vpc.id,
     "Arn"              = aws_vpc.vpc.arn,
@@ -6,6 +10,7 @@ output "VPC" {
   }
 }
 
+# Get all EC2 instance details
 output "EC2" {
   value = { "Instance_Id" = aws_instance.ec2.id,
     "Instance_Name" = aws_instance.ec2.tags["Name"]
@@ -15,6 +20,7 @@ output "EC2" {
   }
 }
 
+# Get all RDS details
 output "RDS" {
   value = {
     "DB_Instance" = aws_rds_cluster_instance.primary.id
@@ -24,6 +30,7 @@ output "RDS" {
   }
 }
 
+# Get all ALB details
 output "ALB" {
   value = {
     "ALB" = aws_lb.alb.name

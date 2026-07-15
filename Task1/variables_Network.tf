@@ -14,6 +14,7 @@ variable "vpc_tags" {
 
 }
 
+# list of Public Subnet Cidrs
 variable "public_subnet_cidrs" {
   type        = list(string)
   description = "Provide list of public CIDR ranges"
@@ -24,6 +25,7 @@ variable "public_subnet_cidrs" {
   }
 }
 
+# list of public subnets
 variable "subnet_az" {
   type        = list(string)
   description = "AZ in which subnets needs to be launched"
