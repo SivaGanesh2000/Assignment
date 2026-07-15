@@ -48,3 +48,9 @@ To destroy the resources:
 ```bash
 terraform destroy
 ```
+
+### Things I could Do but unable to due to time constraint:
+
+- Create Auto Scaling Group, with multi AZ for high availability
+- Improvements like adding Route 53 or AWS Secrets Manager to store RDS secrets.
+- Update port to https instead of http for better security. - Need to have SSL certificates for it
